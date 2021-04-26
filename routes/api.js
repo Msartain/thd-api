@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const carsCtrl = require('../controllers/api/cars');
+const carsCtrl = require('../controllers/cars');
 
-router.get('/cars', carsCtrl.index);
+router.get('/', carsCtrl.index);
 
-router.get('/cars/:id', carsCtrl.show);
+router.get('/:id', carsCtrl.show);
 
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const Car = require('../../models/cars');
+const Car = require('../models/cars');
 
 module.exports = {
     index,
