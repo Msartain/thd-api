@@ -5,7 +5,34 @@ const app = express();
 require('../config/database');
 app.use("/cars", carsRouter); //routes
 
-describe("testing-server-routes", () => {
+// jest.mock("../config/database", () => [
+//         {
+//             make: 'Ford',
+//             model: 'F10',
+//             package: 'Base',
+//             color: 'Silver',
+//             year: 2010,
+//             category: 'Truck',
+//             mileage: 120123,
+//             price: 1999900,
+//             id: 'JHK290Xj',
+//         },
+//         {
+//             make: 'Toyota',
+//             model: 'Camry',
+//             package: 'SE',
+//             color: 'White',
+//             year: 2019,
+//             category: 'Sedan',
+//             mileage: 3999,
+//             price: 2899000,
+//             id: 'fWI37la',
+//         },
+//     ]);
+
+// let firstCar;
+
+describe("testing routes", () => {
     it("GET /cars", async () => {
         const { body } = await request(app).get("/cars"); 
         expect(body[0].make).toMatch(/Ford/);
@@ -32,4 +59,11 @@ describe("testing-server-routes", () => {
         const { body } = await request(app).get(`/cars/${id}`);
         expect(body).toEqual(carObj);
     })
+});
+
+describe("Test a 404", () => {
+    test("It should respond with a 404 status", async () => {
+        const response = await request(app).get("/nowhere");
+        expect(response.statusCode).toBe(404);
+    });
 });
