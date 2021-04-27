@@ -17,6 +17,8 @@ var carSchema = new Schema({
 
 module.exports = mongoose.model('Car', carSchema);
 
+// Below is my fake db, with faked functions, to get backend started.
+
 // const cars = [
 //     {
 //         make: 'Ford',

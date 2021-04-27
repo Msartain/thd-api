@@ -1,9 +1,12 @@
-const express = require("express");
+const express = require('express');
+var mongoose = require('mongoose');
 var carsRouter = require('../routes/api'); 
 const request = require("supertest"); 
 const app = express();
 require('../config/database');
-app.use("/cars", carsRouter); //routes
+app.use('/cars', carsRouter); 
+
+// Mock db so I don't have to hit the endpoint every test.
 
 // jest.mock("../config/database", () => [
 //         {
@@ -31,6 +34,10 @@ app.use("/cars", carsRouter); //routes
 //     ]);
 
 // let firstCar;
+
+afterAll(async () => {
+    await mongoose.connection.close();
+});
 
 describe("testing routes", () => {
     it("GET /cars", async () => {
