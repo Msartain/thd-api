@@ -6,13 +6,12 @@ module.exports = {
 };
 
 function show(req,res){
-    Car.findById(req.params.id, function(err, car){
+    Car.findOne({id: req.params.id}, (err, car) => {
         res.status(200).json(car);
     });
 }
-
 function index(req, res){
-    Car.find({}, function(err, cars){
+    Car.find({}, (err, cars) => {
         res.status(200).json(cars);
     });
 }
