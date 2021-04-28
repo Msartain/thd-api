@@ -6,14 +6,24 @@ module.exports = {
 };
 
 function show(req,res){
-    Car.findOne({id: req.params.id}, (err, car) => {
-        res.status(200).json(car);
-    });
+    try {
+        Car.findOne({id: req.params.id}, (err, car) => {
+            res.status(200).json(car);
+        })
+    } catch (error) {
+        res.status(500).send('An unknown error occurred.');
+    }
+    
 }
+
 function index(req, res){
-    Car.find({}, (err, cars) => {
-        res.status(200).json(cars);
-    });
+    try {
+        Car.find({}, (err, cars) => {
+            res.status(200).json(cars);
+        })
+    } catch (error) {
+        res.status(500).send('An unknown error occurred.');
+    }
 }
 
 // function show(req,res){

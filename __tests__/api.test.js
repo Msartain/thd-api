@@ -64,6 +64,7 @@ describe("testing routes", () => {
 
         const id = 'fWI37la';
         const { body } = await request(app).get(`/cars/${id}`);
+        console.log(body);
         expect(body).toEqual(carObj);
     })
 });
